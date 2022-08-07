@@ -1,0 +1,17 @@
+---
+version: "3.5"
+
+services:
+  pgadmin3:
+    network_mode: "host"
+    image: d0lapevich/pgadmin3
+    user: ${UID}:${GID}
+    restart: on-failure
+    environment:
+      - DISPLAY=unix$DISPLAY
+      - IID=${UID}
+      - GGUID=${GID}
+      - UUSER=${USER}
+    volumes:
+      - ./${HOME}:${HOME}
+      - /tmp/.X11-unix:/tmp/.X11-unix
